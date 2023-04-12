@@ -24,5 +24,10 @@ public class Doctor extends Person{
         return " ";
     }
 
+    @Override
+    public String toString() {
+        return "Doctor [specialty=" + specialty + "]";
+    }
+
     
 }
