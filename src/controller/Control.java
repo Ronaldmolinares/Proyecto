@@ -51,6 +51,8 @@ public class Control {
                         this.generateBillPacient();
                         break;
                     case 5:
+                        System.out.println(medPractice.getDoctors().size());
+                        System.out.println(medPractice.getPatients().size());
                         this.generateBillMedicalPractice();
                         break;
                     case 6:
