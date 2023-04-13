@@ -79,12 +79,13 @@ public class Control {
                 io.showGraphicErrorMessage(e.getMessage());
             }
         } catch (Exception em) {
-            Exception e = new ValueNotFoundException("This doctor already exists");
+            Exception e = new ValueNotFoundException("An error occurred when creating doctor");
             io.showGraphicErrorMessage(e.getMessage());
         }
     }
 
     private void addPacient() {
+
     }
 
     private void generateBillMedicalPractice() {
