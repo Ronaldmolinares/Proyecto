@@ -37,7 +37,7 @@ public class Patient extends Person{
 
     @Override
     public String toString() {
-        return "Patient [gender=" + gender + ", birthday=" + birthday + "]";
+        return "Patient " + super.toString() + " gender=" + gender + ", birthday=" + birthday + "]";
     }
 
     
