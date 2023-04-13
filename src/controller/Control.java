@@ -1,7 +1,6 @@
 package controller;
 
-import model.Doctor;
-import model.MedicalPractice;
+import model.*;
 import view.IoManager;
 import model.Patient;
 import model.Date;
@@ -35,7 +34,7 @@ public class Control {
                         this.addDoctor();
                         break;
                     case 3:
-                        this.addPacient();
+                        this.addPacient(io.readGraphicInt("Digite ID"));
                         break;
                     case 4:
                         this.generateBillPacient();
@@ -58,6 +57,13 @@ public class Control {
     }
 
     private void addMedicalPractice() {
+        medPractice = new MedicalPractice(
+                io.readGraphicInt("Digite the ID from MedicalPractice"),
+                io.readGraphicString("Digite the name"),
+                io.readGraphicString("Digite the City"),
+                io.readGraphicString("Digite the Adress"));
+        io.showGraphicMessage("MedicalPractice created succesfully");
+        io.showGraphicMessage(medPractice.toString());
     }
 
     private void addDoctor() {
@@ -84,7 +90,31 @@ public class Control {
         }
     }
 
-    private void addPacient() {
+    private void addPacient(int id) {
+        try {
+            if (medPractice.findPatient(id) == -1) {
+                Date bithday = new Date();
+                Patient patient = new Patient(
+                        id,
+                        io.readGraphicString("Insert name: "),
+                        io.readGraphicString("Insert last name: "),
+                        io.readGraphicString("Insert phone: "),
+                        io.readGraphicString("Insert address: "),
+                        io.readGraphicString("Insert email"),
+                        io.readGraphicString("Insert gender: "),
+                        bithday = new Date(io.readGraphicShort("Digite the day"),
+                                io.readGraphicShort("Digite the month"), io.readGraphicShort("Digite the year")));
+                medPractice.addPatient(patient);
+                io.showGraphicMessage("Doctor generated");
+                io.showGraphicMessage(patient.toString());
+            } else {
+                Exception e = new DuplicateException("This patient already exists");
+                io.showGraphicErrorMessage(e.getMessage());
+            }
+        } catch (Exception em) {
+            Exception e = new ValueNotFoundException("An error occurred when creating patient");
+            io.showGraphicErrorMessage(e.getMessage());
+        }
     }
 
     private void generateBillMedicalPractice() {
