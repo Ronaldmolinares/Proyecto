@@ -87,33 +87,39 @@ public class MedicalPractice {
     }
 
     public void addPatient(Patient patient) {
-		patients.add(patient);
-	}
-	public void addDoctor(Doctor doctor) {
-		doctors.add(doctor);
-	}
-	public void addBill(Bill bill) {
-		bills.add(bill);
-	}
+        patients.add(patient);
+    }
 
+    public void addDoctor(Doctor doctor) {
+        doctors.add(doctor);
+    }
+
+    public void addBill(Bill bill) {
+        bills.add(bill);
+    }
 
     public int findDoctor(int id) {
         int position = -1;
-		for (Doctor doc : doctors) {
-			if (id == doc.getId()) {
-				position = doctors.indexOf(doc);
-			}
-		}
-		return position;
+        for (Doctor doc : doctors) {
+            if (id == doc.getId()) {
+                position = doctors.indexOf(doc);
+            }
+        }
+        return position;
     }
 
-    public int findPatient(int id){
+    public int findPatient(int id) {
         int position = -1;
         for (Patient pat : patients) {
-			if (id == pat.getId()) {
-				position = patients.indexOf(pat);
-			}
-		}
-		return position;
+            if (id == pat.getId()) {
+                position = patients.indexOf(pat);
+            }
+        }
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalPractice [id=" + id + ", name=" + name + ", city=" + city + ", adress=" + adress + "]";
     }
 }
