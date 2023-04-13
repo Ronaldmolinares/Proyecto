@@ -3,12 +3,19 @@ package controller;
 import model.*;
 import view.IoManager;
 import model.Patient;
+import model.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import exceptions.DuplicateException;
 import exceptions.ValueNotFoundException;
+import model.Bill;
 
 public class Control {
     IoManager io;
     MedicalPractice medPractice = new MedicalPractice();
+    Bill bill = new Bill();
+    Date date = new Date();
 
     public Control() {
         io = new IoManager();
@@ -75,11 +82,11 @@ public class Control {
 
             } else {
                 Exception e = new DuplicateException("This doctor already exists");
-                io.showGraphicErrorMessage(e.getMessage());
+				io.showGraphicErrorMessage(e.getMessage());
             }
         } catch (Exception em) {
             Exception e = new ValueNotFoundException("This doctor already exists");
-            io.showGraphicErrorMessage(e.getMessage());
+			io.showGraphicErrorMessage(e.getMessage());
         }
     }
 
@@ -114,6 +121,34 @@ public class Control {
     }
 
     private void generateBillPacient() {
+        try {
+            int positionD = medPractice.findDoctor(io.readGraphicInt("Enter the doctor's ID"));
+            
+            int postionP = medPractice.findPatient(io.readGraphicInt("enter patient id"));
+        
+            if (positionD == -1) {
+                throw new RuntimeException("the doctor does not exist");
+            } else if (postionP == -1){
+                throw new RuntimeException("the patient does not exist");
+            } else {
+                bill = new Bill(positionD, 
+                medPractice.getPatients().get(medPractice.findPatient(postionP)), 
+                io.readDouble("enter the amount"),
+                io.readGraphicString("enter treatment"),
+                date = new Date(io.readGraphicShort("enter the day"),
+                                io.readGraphicShort("enter the month"),
+                                io.readGraphicShort("enter the year") )
+                                );
+
+                medPractice.addBill(bill);
+                io.showGraphicMessage((bill.toString()));
+            }
+    
+
+        } catch (Exception e) {
+			io.showGraphicErrorMessage(e.getMessage());
+		}
+
     }
 
 }
