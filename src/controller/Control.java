@@ -38,16 +38,16 @@ public class Control {
                         break;
                     case 4:
                         medPractice = new MedicalPractice(1,"confaboy", "Tunja", "calle 1");
-                        Doctor doc = new Doctor(1, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                        Patient pat = new Patient(1, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
-                        medPractice.addPatient(pat);
-                        medPractice.addDoctor(doc);
+                         Doctor doc = new Doctor(1, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
+                         Patient pat = new Patient(1, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
+                         medPractice.addPatient(pat);
+                         medPractice.addDoctor(doc);
                         
 
-                        Doctor doc1 = new Doctor(2, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                        Patient pat1 = new Patient(2, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
-                        medPractice.addPatient(pat1);
-                        medPractice.addDoctor(doc1);
+                         Doctor doc1 = new Doctor(2, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
+                         Patient pat1 = new Patient(2, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
+                         medPractice.addPatient(pat1);
+                         medPractice.addDoctor(doc1);
                         this.generateBillPacient();
                         break;
                     case 5:
@@ -130,12 +130,11 @@ public class Control {
     }
 
     private void generateBillMedicalPractice() {
-        
+        io.showGraphicMessage(medPractice.getBills() + "\n");
     }
 
     private void generateBillPacient() {
         try {
-            int id = 0;
             int positionD = medPractice.findDoctor(io.readGraphicInt("Enter the doctor's ID"));
             
             int positionP = medPractice.findPatient(io.readGraphicInt("enter patient id"));
@@ -147,7 +146,7 @@ public class Control {
             } 
 
             else if (positionD != -1 && positionP != -1){
-                bill = new Bill(id, 
+                bill = new Bill(medPractice.getBills().size(), 
                 medPractice.getPatients().get(positionP),
                 io.readGraphicDouble("enter the amount"),
                 io.readGraphicString("enter treatment"),
@@ -155,7 +154,6 @@ public class Control {
 
                 medPractice.addBill(bill);
                 io.showGraphicMessage((bill.toString()));
-                id++;
             }
 
         } catch (Exception e) {
@@ -164,12 +162,5 @@ public class Control {
 
     }
 
-    public int countBill (){
-        int counter =0;
-        for (int j = 0; j < medPractice.getBills().size(); j++) {
-            counter = medPractice.getBills().get(j).getNumberBill();
-        }
-        return counter++;
-    }
 
 }
