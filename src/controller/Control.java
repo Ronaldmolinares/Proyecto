@@ -1,9 +1,15 @@
 package controller;
 
+import model.Doctor;
+import model.MedicalPractice;
 import view.IoManager;
+import model.Patient;
+import exceptions.DuplicateException;
+import exceptions.ValueNotFoundException;
 
 public class Control {
     IoManager io;
+    MedicalPractice medPractice = new MedicalPractice();
 
     public Control() {
         io = new IoManager();
@@ -48,6 +54,27 @@ public class Control {
     }
 
     private void addDoctor() {
+        try {
+            int id = io.readGraphicInt("Insert Doctor id.");
+            if (medPractice.findDoctor(id) == -1) {
+                Doctor d = new Doctor(id, io.readGraphicString("Insert name: "),
+                        io.readGraphicString("Insert last name: "),
+                        io.readGraphicString("Insert phone: "),
+                        io.readGraphicString("Insert address: "),
+                        io.readGraphicString("Insert email: "),
+                        io.readGraphicString("Insert specialty: "));
+                medPractice.addDoctor(d);
+                io.showGraphicMessage("Doctor generated");
+                io.showGraphicMessage(d.toString());
+
+            } else {
+                Exception e = new DuplicateException("This doctor already exists");
+				io.showGraphicErrorMessage(e.getMessage());
+            }
+        } catch (Exception em) {
+            Exception e = new ValueNotFoundException("This doctor already exists");
+			io.showGraphicErrorMessage(e.getMessage());
+        }
     }
 
     private void addPacient() {
