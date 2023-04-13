@@ -105,7 +105,7 @@ public class Control {
                         bithday = new Date(io.readGraphicShort("Digite the day"),
                                 io.readGraphicShort("Digite the month"), io.readGraphicShort("Digite the year")));
                 medPractice.addPatient(patient);
-                io.showGraphicMessage("Doctor generated");
+                io.showGraphicMessage("Patient generated");
                 io.showGraphicMessage(patient.toString());
             } else {
                 Exception e = new DuplicateException("This patient already exists");
