@@ -62,8 +62,8 @@ public class Bill {
     
     @Override
     public String toString() {
-        return "Bill [numberBill=" + numberBill + ", patient=" + patient + ", amount=" + amount + ", treatment="
-                + treatment + ", consultationDate=" + consultationDate + "]";
+        return "Bill [Number Bill: " + numberBill + ", patient: " + patient + ", amount: " + amount + ", treatment: "
+                + treatment + ", consultationDate: " + consultationDate + "]";
     }
     
 }
