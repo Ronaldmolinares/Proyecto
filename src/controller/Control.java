@@ -55,8 +55,8 @@ public class Control {
                 io.readInt("Digite the ID from MedicalPractice"),
                 io.readString("Digite the name"), io.readString("Digite the City"),
                 io.readString("Digite the Adress"));
-        io.showMenssage(medicalPractice.toString());
-        io.showMenssage("MedicalPractice created succesfully");
+        io.showMessage(medPractice.toString());
+        io.showMessage("MedicalPractice created succesfully");
 
     }
 
