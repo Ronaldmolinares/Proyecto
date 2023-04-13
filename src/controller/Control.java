@@ -37,15 +37,17 @@ public class Control {
                         this.addPacient(io.readGraphicInt("Digite ID"));
                         break;
                     case 4:
-                        medPractice = new MedicalPractice(1,"confaboy", "Tunja", "calle 1");
+                        medPractice = new MedicalPractice(1, "confaboy", "Tunja", "calle 1");
                         Doctor doc = new Doctor(1, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                        Patient pat = new Patient(1, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
+                        Patient pat = new Patient(1, "luis", "luisito", "565656", "calle244", "b@.com", "masculino",
+                                date = new Date((short) 1, (short) 1, (short) 1));
                         medPractice.addPatient(pat);
                         medPractice.addDoctor(doc);
-                        
 
-                        Doctor doc1 = new Doctor(2, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                        Patient pat1 = new Patient(2, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
+                        Doctor doc1 = new Doctor(2, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com",
+                                "nutricion");
+                        Patient pat1 = new Patient(2, "luis", "luisito", "565656", "calle244", "b@.com", "masculino",
+                                date = new Date((short) 1, (short) 1, (short) 1));
                         medPractice.addPatient(pat1);
                         medPractice.addDoctor(doc1);
                         this.generateBillPacient();
@@ -93,11 +95,11 @@ public class Control {
 
             } else {
                 Exception e = new DuplicateException("This doctor already exists");
-				io.showGraphicErrorMessage(e.getMessage());
+                io.showGraphicErrorMessage(e.getMessage());
             }
         } catch (Exception em) {
             Exception e = new ValueNotFoundException("This doctor already exists");
-			io.showGraphicErrorMessage(e.getMessage());
+            io.showGraphicErrorMessage(e.getMessage());
         }
     }
 
@@ -123,7 +125,7 @@ public class Control {
                 io.showGraphicErrorMessage(e.getMessage());
             }
         } catch (Exception em) {
-            
+
             Exception e = new ValueNotFoundException("An error occurred when creating patient");
             System.out.println(e.getStackTrace());
         }
@@ -137,21 +139,21 @@ public class Control {
         try {
             int id = 0;
             int positionD = medPractice.findDoctor(io.readGraphicInt("Enter the doctor's ID"));
-            
+
             int positionP = medPractice.findPatient(io.readGraphicInt("enter patient id"));
-        
+
             if (positionD == -1) {
                 throw new RuntimeException("the doctor does not exist");
-            } else if (positionP == -1){
+            } else if (positionP == -1) {
                 throw new RuntimeException("the patient does not exist");
-            } 
+            }
 
-            else if (positionD != -1 && positionP != -1){
-                bill = new Bill(id, 
-                medPractice.getPatients().get(positionP),
-                io.readGraphicDouble("enter the amount"),
-                io.readGraphicString("enter treatment"),
-                date.getDate());
+            else if (positionD != -1 && positionP != -1) {
+                bill = new Bill(id,
+                        medPractice.getPatients().get(positionP),
+                        io.readGraphicDouble("enter the amount"),
+                        io.readGraphicString("enter treatment"),
+                        date.getDate());
 
                 medPractice.addBill(bill);
                 io.showGraphicMessage((bill.toString()));
@@ -159,13 +161,13 @@ public class Control {
             }
 
         } catch (Exception e) {
-			io.showGraphicErrorMessage(e.getMessage());
-		}
+            io.showGraphicErrorMessage(e.getMessage());
+        }
 
     }
 
-    public int countBill (){
-        int counter =0;
+    public int countBill() {
+        int counter = 0;
         for (int j = 0; j < medPractice.getBills().size(); j++) {
             counter = medPractice.getBills().get(j).getNumberBill();
         }
