@@ -1,5 +1,5 @@
 package model;
-
+import java.util.Iterator;
 import java.util.ArrayList;
 
 public class MedicalPractice {
@@ -117,6 +117,16 @@ public class MedicalPractice {
         }
         return position;
     }
+
+    public String showBills() {
+		String salida="--------------------------------------------------LIST OF BILLS--------------------------------------------------"+
+					  "\n";
+		Iterator it = bills.iterator(); 
+		while(it.hasNext()){
+			salida+=(it.next());
+		}
+		return salida;
+	}
 
     @Override
     public String toString() {
