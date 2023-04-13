@@ -27,7 +27,7 @@ public class IoManager {
     }
 
     public int readInt(String message) {
-       showMessage(message);
+        showMessage(message);
         return scanner.nextInt();
     }
 
@@ -68,7 +68,7 @@ public class IoManager {
     }
 
     public String readGraphicString(String message) {
-       showMessage(message);
+        showMessage(message);
         return JOptionPane.showInputDialog(null, message);
     }
 
@@ -127,7 +127,7 @@ public class IoManager {
                 "4. Generate Bill to patient\n" +
                 "5. Generate Bill to medical practice\n" +
                 "6. Exit");
-        return readInt(menuText);
+        return readGraphicInt(menuText);
     }
 
 }
