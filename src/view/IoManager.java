@@ -62,38 +62,38 @@ public class IoManager {
 
     // ----NUMERICAL DATA
 
-    public char readGraphicChar(String menssage) {
+    public char readGraphicChar(String message) {
         showMessage(message);
-        return JOptionPane.showInputDialog(null, menssage).charAt(0);
+        return JOptionPane.showInputDialog(null, message).charAt(0);
     }
 
-    public String readGraphicString(String menssage) {
+    public String readGraphicString(String message) {
        showMessage(message);
-        return JOptionPane.showInputDialog(null, menssage);
+        return JOptionPane.showInputDialog(null, message);
     }
 
     public short readGraphicShort(String message) {
-        this.showMenssage(message);
+        this.showMessage(message);
         return Short.parseShort(JOptionPane.showInputDialog(null, message));
     }
 
     public int readGraphicInt(String message) {
-        this.showMenssage(message);
+        this.showMessage(message);
         return Integer.parseInt(JOptionPane.showInputDialog(null, message));
     }
 
     public long readGraphicLong(String message) {
-        this.showMenssage(message);
+        this.showMessage(message);
         return Long.parseLong(JOptionPane.showInputDialog(null, message));
     }
 
     public double readGraphicDouble(String message) {
-        this.showMenssage(message);
+        this.showMessage(message);
         return Double.parseDouble(JOptionPane.showInputDialog(null, message));
     }
 
     public float readGraphicFloat(String message) {
-        this.showMenssage(message);
+        this.showMessage(message);
         return Float.parseFloat(JOptionPane.showInputDialog(null, message));
     }
 
