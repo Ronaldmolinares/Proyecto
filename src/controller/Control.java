@@ -37,22 +37,9 @@ public class Control {
                         this.addPacient(io.readGraphicInt("Digite ID"));
                         break;
                     case 4:
-                        medPractice = new MedicalPractice(1,"confaboy", "Tunja", "calle 1");
-                         Doctor doc = new Doctor(1, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                         Patient pat = new Patient(1, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
-                         medPractice.addPatient(pat);
-                         medPractice.addDoctor(doc);
-                        
-
-                         Doctor doc1 = new Doctor(2, "carlos", "Carlitos", "3111524", "calle 23", "e@e.com", "nutricion");
-                         Patient pat1 = new Patient(2, "luis", "luisito", "565656", "calle244", "b@.com", "masculino", date = new Date((short)1,(short) 1, (short)1));
-                         medPractice.addPatient(pat1);
-                         medPractice.addDoctor(doc1);
                         this.generateBillPacient();
                         break;
                     case 5:
-                        System.out.println(medPractice.getDoctors().size());
-                        System.out.println(medPractice.getPatients().size());
                         this.generateBillMedicalPractice();
                         break;
                     case 6:
