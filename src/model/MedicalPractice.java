@@ -1,23 +1,24 @@
 package model;
+
 import java.util.ArrayList;
 
 public class MedicalPractice {
-    
     private int id;
     private String name;
     private String city;
     private String adress;
     private ArrayList<Patient> patients = new ArrayList<Patient>();
-    private ArrayList<Doctor>doctors= new ArrayList<Doctor>();
-    private ArrayList<Bill> bills= new ArrayList<Bill>();
-    
-    public MedicalPractice(){
-        
+    private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+    private ArrayList<Bill> bills = new ArrayList<Bill>();
+
+    public MedicalPractice() {
+
     }
-    
-    public MedicalPractice(int id, String name, String adress) {
+
+    public MedicalPractice(int id, String name, String city, String adress) {
         this.id = id;
         this.name = name;
+        this.city = city;
         this.adress = adress;
     }
 
@@ -35,6 +36,14 @@ public class MedicalPractice {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAdress() {
@@ -78,33 +87,39 @@ public class MedicalPractice {
     }
 
     public void addPatient(Patient patient) {
-		patients.add(patient);
-	}
-	public void addDoctor(Doctor doctor) {
-		doctors.add(doctor);
-	}
-	public void addBill(Bill bill) {
-		bills.add(bill);
-	}
+        patients.add(patient);
+    }
 
+    public void addDoctor(Doctor doctor) {
+        doctors.add(doctor);
+    }
+
+    public void addBill(Bill bill) {
+        bills.add(bill);
+    }
 
     public int findDoctor(int id) {
         int position = -1;
-		for (Doctor doc : doctors) {
-			if (id == doc.getId()) {
-				position = doctors.indexOf(doc);
-			}
-		}
-		return position;
+        for (Doctor doc : doctors) {
+            if (id == doc.getId()) {
+                position = doctors.indexOf(doc);
+            }
+        }
+        return position;
     }
 
-    public int findPatient(int id){
+    public int findPatient(int id) {
         int position = -1;
         for (Patient pat : patients) {
-			if (id == pat.getId()) {
-				position = patients.indexOf(pat);
-			}
-		}
-		return position;
+            if (id == pat.getId()) {
+                position = patients.indexOf(pat);
+            }
+        }
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalPractice [id=" + id + ", name=" + name + ", city=" + city + ", adress=" + adress + "]";
     }
 }
