@@ -45,5 +45,66 @@ public class MedicalPractice {
         this.adress = adress;
     }
 
-    
+    public ArrayList<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(ArrayList<Patient> patients) {
+        this.patients = patients;
+    }
+
+    public ArrayList<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(ArrayList<Doctor> doctors) {
+        this.doctors = doctors;
+    }
+
+    public ArrayList<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(ArrayList<Bill> bills) {
+        this.bills = bills;
+    }
+
+    public Patient patient(int position) {
+        return patients.get(position);
+    }
+
+    public Doctor doctor(int position) {
+        return doctors.get(position);
+    }
+
+    public void addPatient(Patient patient) {
+		patients.add(patient);
+	}
+	public void addDoctor(Doctor doctor) {
+		doctors.add(doctor);
+	}
+	public void addBill(Bill bill) {
+		bills.add(bill);
+	}
+
+
+    public int findDoctor(int id) {
+        int position = -1;
+		for (Doctor doc : doctors) {
+			if (id == doc.getId()) {
+				position = doctors.indexOf(doc);
+			}
+		}
+		return position;
+    }
+
+    public int findPatient(int id){
+        int position = -1;
+        for (Patient pat : patients) {
+			if (id == pat.getId()) {
+				position = patients.indexOf(pat);
+			}
+		}
+		return position;
+    }
 }
