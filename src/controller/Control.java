@@ -112,8 +112,9 @@ public class Control {
                 io.showGraphicErrorMessage(e.getMessage());
             }
         } catch (Exception em) {
+            
             Exception e = new ValueNotFoundException("An error occurred when creating patient");
-            io.showGraphicErrorMessage(e.getMessage());
+            System.out.println(e.getStackTrace());
         }
     }
 
