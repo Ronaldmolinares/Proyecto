@@ -6,9 +6,9 @@ public class Bill {
     private Patient patient;
     private double amount;
     private String treatment;
-    private Date consultationDate;
+    private String consultationDate;
 
-    public Bill(int numberBill, Patient patient, double amount, String treatment, Date consultationDate) {
+    public Bill(int numberBill, Patient patient, double amount, String treatment, String consultationDate) {
         this.numberBill = numberBill;
         this.patient = patient;
         this.amount = amount;
@@ -52,21 +52,18 @@ public class Bill {
         this.treatment = treatment;
     }
 
-    public Date getConsultationDate() {
+    public String getConsultationDate() {
         return consultationDate;
     }
 
-    public void setConsultationDate(Date consultationDate) {
+    public void setConsultationDate(String consultationDate) {
         this.consultationDate = consultationDate;
     }
-
+    
     @Override
     public String toString() {
         return "Bill [numberBill=" + numberBill + ", patient=" + patient + ", amount=" + amount + ", treatment="
                 + treatment + ", consultationDate=" + consultationDate + "]";
     }
     
-    public void exportBill(){
-        
-    }
 }
