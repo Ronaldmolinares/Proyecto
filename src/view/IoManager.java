@@ -1,10 +1,52 @@
 package view;
 
+import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 public class IoManager {
+    private Scanner scanner;
 
-    public void showMenssage(String message) {
+    public IoManager() {
+        scanner = new Scanner(System.in);
+    }
+
+    public char readChar(String menssage) {
+        this.showMessage(menssage);
+        return scanner.next().charAt(0);
+    }
+
+    public String readString(String message) {
+        this.showMessage(message);
+        return scanner.nextLine();
+    }
+
+    public short readShort(String message) {
+        showMessage(message);
+        return scanner.nextShort();
+    }
+
+    public int readInt(String message) {
+       showMessage(message);
+        return scanner.nextInt();
+    }
+
+    public long readLong(String message) {
+        showMessage(message);
+        return scanner.nextLong();
+    }
+
+    public double readDouble(String message) {
+        showMessage(message);
+        return scanner.nextDouble();
+    }
+
+    public float readFloat(String message) {
+        this.showMessage(message);
+        return scanner.nextFloat();
+    }
+
+    public void showMessage(String message) {
         System.out.println(message);
     }
 
@@ -21,12 +63,12 @@ public class IoManager {
     // ----NUMERICAL DATA
 
     public char readGraphicChar(String menssage) {
-        this.showMenssage(menssage);
+        showMessage(message);
         return JOptionPane.showInputDialog(null, menssage).charAt(0);
     }
 
     public String readGraphicString(String menssage) {
-        this.showMenssage(menssage);
+       showMessage(message);
         return JOptionPane.showInputDialog(null, menssage);
     }
 
@@ -85,7 +127,7 @@ public class IoManager {
                 "4. Generate Bill to patient\n" +
                 "5. Generate Bill to medical practice\n" +
                 "6. Exit");
-        return readGraphicInt(menuText);
+        return readInt(menuText);
     }
 
 }

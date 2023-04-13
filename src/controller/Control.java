@@ -1,9 +1,11 @@
 package controller;
 
+import model.MedicalPractice;
 import view.IoManager;
 
 public class Control {
     IoManager io;
+    MedicalPractice medicalPractice = new MedicalPractice();
 
     public Control() {
         io = new IoManager();
@@ -45,6 +47,13 @@ public class Control {
     }
 
     private void addMedicalPractice() {
+        medicalPractice = new MedicalPractice(
+                io.readInt("Digite the ID from MedicalPractice"),
+                io.readString("Digite the name"), io.readString("Digite the City"),
+                io.readString("Digite the Adress"));
+        io.showMenssage(medicalPractice.toString());
+        io.showMenssage("MedicalPractice created succesfully");
+
     }
 
     private void addDoctor() {
