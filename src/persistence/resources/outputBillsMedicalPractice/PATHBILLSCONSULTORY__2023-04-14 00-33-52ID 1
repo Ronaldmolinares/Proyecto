@@ -1,0 +1,3 @@
+		---------------------------------------- 		 LIST OF BILLS 		--------------------------------------------------		
+Bill [Number Bill: 0, patient: Patient  [id=1, name=Camila, lastName=Sosa, phone=312321123, address=Cll 50 N°3424, email=sonia@gmail gender=Femenino, birthday=Date [day=21, month=3, year=2005]], amount: 50000.0, treatment: Limpieza dental, consultationDate: 2023-04-14 00:32:33]
+Bill [Number Bill: 1, patient: Patient  [id=1, name=Camila, lastName=Sosa, phone=312321123, address=Cll 50 N°3424, email=sonia@gmail gender=Femenino, birthday=Date [day=21, month=3, year=2005]], amount: 50000.0, treatment: Corona, consultationDate: 2023-04-14 00:33:12]
