@@ -9,7 +9,8 @@
 ***
 Este es un proyecto para un consultorio odontológico que permite registrar pacientes y médicos (dentistas), generar facturas por cada cliente atendido y crear un archivo con todas las ventas para el inventario del consultorio.
 ### Screenshot
-![Image text](https://github.com/Ronaldmolinares/Proyecto/blob/main/image%201%20rm.png?raw=true)
+![Vista del menu principal](https://github.com/Ronaldmolinares/Proyecto/blob/main/image%201%20rm.png?raw=true)
+
 ##Funcionalidades
 ***
 Registro de pacientes y médicos
