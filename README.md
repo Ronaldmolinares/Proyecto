@@ -32,7 +32,7 @@ $ npm install
 $ npm start
 ```
 Side information: To use the application in a special environment use ```lorem ipsum``` to start
-## Collaboración
+## Colaboración
 ***
 Si deseas contribuir al proyecto, puedes hacer lo siguiente:
 >Hacer un fork del repositorio
