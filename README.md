@@ -1,4 +1,4 @@
-##Consultorio Odontológico
+# Consultorio Odontológico
 ## Table of Contents
 1. [Descipción](#descripción)
 2. [Funcionalidades](#funcionalidades)
