@@ -24,35 +24,34 @@ public class Control {
             try {
                 opcion = io.readMenu();
                 switch (opcion) {
+
                     case 1:
-                        this.addMedicalPractice();
-                        break;
-                    case 2:
                         this.addDoctor();
                         break;
-                    case 3:
+                    case 2:
                         this.addPacient(io.readGraphicInt("Digite ID"));
                         break;
-                    case 4:
+                    case 3:
                         Doctor doctor = new Doctor(1, "Marx", "Slown", "312321123", "Cll 25 N°3424", "sonia@gmail",
                                 "Ortodoncista");
                         medPractice.addDoctor(doctor);
                         Patient patient = new Patient(1, "Camila", "Sosa", "312321123", "Cll 50 N°3424", "sonia@gmail",
-                                "Femenino", date = new Date((short) 21, (short) 03, (short) 2005));
+                                 date = new Date((short) 21, (short) 03, (short) 2005));
                         medPractice.addPatient(patient);
                         Doctor doctor1 = new Doctor(2, "Meredith", "Gray", "312321123", "Cll 97 N°3424", "sonia@gmail",
                                 "Ortodoncista");
                         medPractice.addDoctor(doctor1);
                         Patient patient1 = new Patient(2, "Ana", "Valenzuela", "312321123", "Cll 190 N°3424",
                                 "sonia@gmail",
-                                "Femenino", date = new Date((short) 21, (short) 03, (short) 2005));
+                                 date = new Date((short) 21, (short) 03, (short) 2005));
                         medPractice.addPatient(patient1);
                         this.generateBillPacient();
                         break;
-                    case 5:
+                    case 4:
                         this.generateBillMedicalPractice();
                         break;
-                    case 6:
+                    case 5:
+
                         break;
                     default:
                         io.showGraphicMessage("You have selected an invalid option!");
@@ -62,7 +61,7 @@ public class Control {
                 io.showGraphicErrorMessage("You must enter an integer");
                 io.showGraphicErrorMessage(e.getMessage());
             }
-        } while (opcion != 6);
+        } while (opcion != 5);
         io.showGraphicMessage("See you later");
     }
 
@@ -82,16 +81,6 @@ public class Control {
 
     private void readFile(String path) {
         Persistence.readFile(path);
-    }
-
-    private void addMedicalPractice() {
-        medPractice = new MedicalPractice(
-                io.readGraphicInt("Digite the ID from MedicalPractice"),
-                io.readGraphicString("Digite the name"),
-                io.readGraphicString("Digite the City"),
-                io.readGraphicString("Digite the Adress"));
-        io.showGraphicMessage("MedicalPractice created succesfully");
-        io.showGraphicMessage(medPractice.toString());
     }
 
     private void addDoctor() {
@@ -129,7 +118,6 @@ public class Control {
                         io.readGraphicString("Insert phone: "),
                         io.readGraphicString("Insert address: "),
                         io.readGraphicString("Insert email"),
-                        io.readGraphicString("Insert gender: "),
                         bithday = new Date(io.readGraphicShort("Digite the day"),
                                 io.readGraphicShort("Digite the month"), io.readGraphicShort("Digite the year")));
                 medPractice.addPatient(patient);
@@ -182,7 +170,7 @@ public class Control {
                     + "Bill Date: " + bill.getConsultationDate() + "\n"
                     + "Data patient: " + bill.getPatient().toString() + "\n"
                     + "Amount: " + bill.getAmount() + "\n"
-                    + "Treatment: " + bill.getTreatment() + "\nWe hope your experience at " + medPractice.getName()
+                    + "Treatment: " + bill.getTreatment()
                     + " was the best." + "\nSee you later";
             this.writeFile(bag, this.generatePathBill(bill));
         } catch (Exception e) {
