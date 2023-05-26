@@ -121,12 +121,12 @@ public class IoManager {
 
     public int readMenu() {
         String menuText = ("Welcome, select an option\n" +
-                "1. Create Medical Practice\n" +
-                "2. Create doctor\n" +
-                "3. Create a patient\n" +
-                "4. Generate Bill to patient\n" +
-                "5. Generate Bill to medical practice\n" +
-                "6. Exit");
+              
+                "1. Create doctor\n" +
+                "2. Create a patient\n" +
+                "3. Generate Bill to patient\n" +
+                "4. Generate Bill to medical practice\n" +
+                "5. Exit");
         return readGraphicInt(menuText);
     }
 

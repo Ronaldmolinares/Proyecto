@@ -1,26 +1,16 @@
 package model;
 
 public class Patient extends Person{
-    private String gender;
     private Date birthday;
 
     public Patient(){
 
     }
 
-    public Patient(int id, String name, String lastName, String phone, String address, String email, String gender,
+    public Patient(int id, String name, String lastName, String phone, String address, String email,
             Date birthday) {
         super(id, name, lastName, phone, address, email);
-        this.gender = gender;
         this.birthday = birthday;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public Date getBirthday() {
@@ -37,7 +27,7 @@ public class Patient extends Person{
 
     @Override
     public String toString() {
-        return "Patient " + super.toString() + " gender=" + gender + ", birthday=" + birthday + "]";
+        return "Patient " + super.toString() + ", birthday=" + birthday + "]";
     }
 
     
