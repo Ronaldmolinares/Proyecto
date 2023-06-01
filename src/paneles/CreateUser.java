@@ -4,6 +4,7 @@
  */
 package paneles;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,37 +56,73 @@ public class CreateUser extends javax.swing.JPanel {
         name.setText("Name");
 
         tfname.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfname.setForeground(new java.awt.Color(153, 153, 153));
         tfname.setText("Enter Your Name");
+        tfname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfnameMousePressed(evt);
+            }
+        });
 
         lastName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         lastName.setText("Last Name");
 
         tflastName.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tflastName.setForeground(new java.awt.Color(153, 153, 153));
         tflastName.setText("Enter Your Last Name");
+        tflastName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tflastNameMousePressed(evt);
+            }
+        });
 
         phone.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         phone.setText("Phone");
 
         tfphone.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfphone.setForeground(new java.awt.Color(153, 153, 153));
         tfphone.setText("Enter Your Phone");
+        tfphone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfphoneMousePressed(evt);
+            }
+        });
 
         address.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         address.setText("Address");
 
         tfaddress.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfaddress.setForeground(new java.awt.Color(153, 153, 153));
         tfaddress.setText("Enter Your Address");
+        tfaddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfaddressMousePressed(evt);
+            }
+        });
 
         email.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         email.setText("Email");
 
         tfemail.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfemail.setForeground(new java.awt.Color(153, 153, 153));
         tfemail.setText("Enter Your Email");
+        tfemail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfemailMousePressed(evt);
+            }
+        });
 
         birthday.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         birthday.setText("Birthday");
 
         tfbirthday.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfbirthday.setForeground(new java.awt.Color(153, 153, 153));
         tfbirthday.setText("DD/MM/AAAA");
+        tfbirthday.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfbirthdayMousePressed(evt);
+            }
+        });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -189,6 +226,52 @@ public class CreateUser extends javax.swing.JPanel {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Patient created successfully");
+    }                                       
+
+    private void tfnameMousePressed(java.awt.event.MouseEvent evt) {                                    
+        // TODO add your handling code here:
+                if(tfname.getText().equals("Enter Your Name")) {
+            tfname.setText("");
+            tfname.setForeground(Color.BLACK);
+        }
+    }                                   
+
+    private void tflastNameMousePressed(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+                if(tflastName.getText().equals("Enter Your Last Name")) {
+            tflastName.setText("");
+            tflastName.setForeground(Color.BLACK);
+        }
+    }                                       
+
+    private void tfphoneMousePressed(java.awt.event.MouseEvent evt) {                                     
+        if(tfphone.getText().equals("Enter Your Phone")) {
+            tfphone.setText("");
+            tfphone.setForeground(Color.BLACK);
+        }        // TODO add your handling code here:
+    }                                    
+
+    private void tfaddressMousePressed(java.awt.event.MouseEvent evt) {                                       
+        // TODO add your handling code here:
+                if(tfaddress.getText().equals("Enter Your Address")) {
+            tfaddress.setText("");
+            tfaddress.setForeground(Color.BLACK);
+        }
+    }                                      
+
+    private void tfemailMousePressed(java.awt.event.MouseEvent evt) {                                     
+        if(tfemail.getText().equals("Enter Your Email")) {
+            tfemail.setText("");
+            tfemail.setForeground(Color.BLACK);
+        }        // TODO add your handling code here:
+    }                                    
+
+    private void tfbirthdayMousePressed(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+                if(tfbirthday.getText().equals("DD/MM/AAAA")) {
+            tfbirthday.setText("");
+            tfbirthday.setForeground(Color.BLACK);
+        }
     }                                       
 
 
