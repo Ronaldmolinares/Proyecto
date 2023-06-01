@@ -4,6 +4,7 @@
  */
 package login;
 
+import gui.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -277,7 +278,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {                                     
     //JOptionPane.showMessageDialog(null, "FIN");
-    NewJFrame frame = new NewJFrame();
+    MenuFrame frame = new MenuFrame();
     frame.setVisible(true);
     this.dispose();
 // TODO add your handling code here:
