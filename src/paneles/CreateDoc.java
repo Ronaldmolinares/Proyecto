@@ -28,6 +28,7 @@ public class CreateDoc extends javax.swing.JPanel {
      */
     public CreateDoc() {
         initComponents();
+        //Leer Archivo y cargar Data 
     }
 
     /**

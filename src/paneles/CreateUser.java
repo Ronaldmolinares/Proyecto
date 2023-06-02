@@ -26,7 +26,9 @@ public class CreateUser extends javax.swing.JPanel {
 	 * Creates new form CreateDoc
 	 */
 	public CreateUser() {
+        //Leer Archivo y cargar Data
 		initComponents();
+         
 	}
 
 	/**

@@ -8,14 +8,14 @@ public class Bill {
     private int numberBill;
     private Patient patient;
     private double amount;
-    private String treatment;
+    private TreatmentEnum treatmentEnum;
     private String consultationDate;
 
-    public Bill(int numberBill, Patient patient, double amount, String treatment, String consultationDate) {
+    public Bill(int numberBill, Patient patient, double amount, TreatmentEnum treatment, String consultationDate) {
         this.numberBill = numberBill;
         this.patient = patient;
         this.amount = amount;
-        this.treatment = treatment;
+        this.treatmentEnum = treatment;
         this.consultationDate = consultationDate;
     }
 
@@ -47,12 +47,12 @@ public class Bill {
         this.amount = amount;
     }
 
-    public String getTreatment() {
-        return treatment;
+    public TreatmentEnum getTreatment() {
+        return treatmentEnum;
     }
 
-    public void setTreatment(String treatment) {
-        this.treatment = treatment;
+    public void setTreatment(TreatmentEnum treatment) {
+        this.treatmentEnum = treatment;
     }
 
     public String getConsultationDate() {
@@ -72,7 +72,7 @@ public class Bill {
     public String toString() {
         return numberBill + ";" + patient.getId() + ";" + patient.getName() + " " + patient.getLastName() + ";"
                 + patient.getPhone() + ";" +
-                treatment + ";" + amount + ";" +consultationDate ;
+                treatmentEnum + ";" + amount + ";" +consultationDate ;
     }
 
 }
