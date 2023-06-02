@@ -6,6 +6,9 @@ package paneles;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -29,6 +32,7 @@ public class CreateUser extends javax.swing.JPanel {
 	 */
 	public CreateUser() {
 		initComponents();
+		medicalPractice = CreateDoc.medicalPractice;
 	}
 
 	/**
@@ -39,7 +43,7 @@ public class CreateUser extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
-
+		cargarPatients(PATHPATIENT);
 		bg = new javax.swing.JPanel();
 		message = new javax.swing.JLabel();
 		name = new javax.swing.JLabel();
@@ -124,7 +128,6 @@ public class CreateUser extends javax.swing.JPanel {
 				tfemailMousePressed(evt);
 			}
 
-
 		});
 
 		birthday.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -144,7 +147,7 @@ public class CreateUser extends javax.swing.JPanel {
 					tfbirthday.setText("");
 					tfbirthday.setForeground(Color.BLACK);
 				}
-				
+
 			}
 		});
 
@@ -179,7 +182,7 @@ public class CreateUser extends javax.swing.JPanel {
 					tfid.setText("");
 					tfid.setForeground(Color.BLACK);
 				}
-				
+
 			}
 		});
 
@@ -298,6 +301,41 @@ public class CreateUser extends javax.swing.JPanel {
 				javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 	}// </editor-fold>
 
+	private void cargarPatients(String filePath) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] values = line.split(";");
+				if (values.length == 7) {
+					try {
+						int id = Integer.parseInt(values[0]);
+						String name = values[1];
+						String lastName = values[2];
+						String phone = values[3];
+						String address = values[4];
+						String email = values[5];
+						String birthday = values[6];
+
+						if (medicalPractice.findPatient(id) == -1) {
+							Patient patient = new Patient(id, name, lastName, phone, address, email, birthday);
+							medicalPractice.addPatient(patient);
+						} else {
+							JOptionPane.showMessageDialog(null, "Patient already exists.");
+						}
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "Invalid ID format for doctor: " + line);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid data format for doctor: " + line);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error reading the file.");
+		}
+
+	}
+
 	private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idText = tfid.getText();
@@ -337,14 +375,16 @@ public class CreateUser extends javax.swing.JPanel {
 		}
 
 	}
+
 	private void tfemailMousePressed(MouseEvent evt) {
 		// TODO add your handling code here:
 		if (tfemail.getText().equals("Enter Your Email")) {
 			tfemail.setText("");
 			tfemail.setForeground(Color.BLACK);
 		}
-		
+
 	}
+
 	private void tfnameMousePressed(java.awt.event.MouseEvent evt) {
 		// TODO add your handling code here:
 		if (tfname.getText().equals("Enter Your Name")) {

@@ -1,3 +1,2 @@
 0;1;Camila Sosa;312321123;Limpieza dental;4000;2023-04-14
 1;2;Lunna Sosa;312321123;Control Ortodoncia;4000;2023-04-14
-

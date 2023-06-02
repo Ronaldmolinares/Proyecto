@@ -25,7 +25,7 @@ import persistence.Persistence;
  */
 public class CreateDoc extends javax.swing.JPanel {
 	private static final String PATHDOCTOR = "src\\persistence\\resources\\outputData\\Doctors.txt";
-	private static MedicalPractice medicalPractice = new MedicalPractice();
+	public static MedicalPractice medicalPractice = new MedicalPractice();
 
 	/**
 	 * Creates new form CreateDoc

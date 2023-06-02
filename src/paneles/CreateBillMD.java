@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import javax.swing.table.DefaultTableModel;
 
 import model.MedicalPractice;
 import persistence.Persistence;
@@ -13,7 +14,6 @@ public class CreateBillMD extends javax.swing.JPanel {
 	private static final String PATHBILLSCONSULTORY = "src\\persistence\\resources\\outputBillsMedicalPractice\\BILLSCONSULTORY.txt";
 	private javax.swing.JButton btnGenerarFactura;
 	private MedicalPractice medicalPractice = new MedicalPractice();
-
 	private Persistence persistence = new Persistence();
 
 	public CreateBillMD() throws IOException {
@@ -42,7 +42,6 @@ public class CreateBillMD extends javax.swing.JPanel {
 		return matrix;
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() throws IOException {
 		bg = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,24 +51,22 @@ public class CreateBillMD extends javax.swing.JPanel {
 		bg.setBackground(new java.awt.Color(255, 255, 255));
 		bg.setPreferredSize(new java.awt.Dimension(772, 497));
 
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
-				parseText(PATHBILLSCONSULTORY),
-				new String[] { "Number Bill", "Id Patient", "Name Patient", "Phone Patient", "Treatment", "Amount",
-						"Consultation Date" }));
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(parseText(PATHBILLSCONSULTORY), new String[] {
+				"Number Bill", "Id Patient", "Name Patient", "Phone Patient", "Treatment", "Amount",
+				"Consultation Date" }));
 		jScrollPane1.setViewportView(jTable1);
 
 		jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 24));
 		jLabel1.setText("Medical Practice billing history");
 
-		// Crear y configurar el botón
 		btnGenerarFactura = new javax.swing.JButton();
 		btnGenerarFactura.setText("Generar Factura");
 		btnGenerarFactura.setBounds(bg.getWidth() - 150, 20, 130, 30);
 
 		btnGenerarFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Llamar al método writeFile al presionar el botón
 				writeFile(medicalPractice.showBills(), PATHBILLSCONSULTORY);
+				cargarTabla();
 			}
 		});
 
@@ -97,6 +94,18 @@ public class CreateBillMD extends javax.swing.JPanel {
 				.addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE));
+	}
+
+	private void cargarTabla() {
+		try {
+			String[][] data = parseText(PATHBILLSCONSULTORY);
+			DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+			model.setDataVector(data, new String[] { "Number Bill", "Id Patient", "Name Patient", "Phone Patient",
+					"Treatment", "Amount", "Consultation Date" });
+		} catch (IOException e) {
+			e.printStackTrace();
+			// Manejo de errores al leer el archivo
+		}
 	}
 
 	private void writeFile(String content, String path) {

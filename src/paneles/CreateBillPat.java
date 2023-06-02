@@ -21,6 +21,7 @@ public class CreateBillPat extends javax.swing.JPanel {
 
         public CreateBillPat() {
                 initComponents();
+                medicalPractice = CreateUser.medicalPractice;
         }
 
         @SuppressWarnings("unchecked")
@@ -130,14 +131,18 @@ public class CreateBillPat extends javax.swing.JPanel {
                                 bill.getPatient().getName();
         }
 
-        private void generateBillPatient(int idDoctor, int idPatient){
+        private void generateBillPatient(int idDoctor, int idPatient) {
                 try {
-                        if(medicalPractice.findPatient(idPatient)==-1){
+                        if (medicalPractice.findPatient(idPatient) == -1) {
                                 JOptionPane.showMessageDialog(this, "The patient does not exist");
-                        }else{
+                        } else {
                                 double amount = 0;
-                              
-								bill = new Bill(idPatient, medicalPractice.getPatients().get(medicalPractice.findPatient(idPatient)),amount,(TreatmentEnum) treatmentComboBox.getSelectedItem(),bill.getConsultationDate());
+
+                                bill = new Bill(idPatient,
+                                                medicalPractice.getPatients()
+                                                                .get(medicalPractice.findPatient(idPatient)),
+                                                amount, (TreatmentEnum) treatmentComboBox.getSelectedItem(),
+                                                bill.getConsultationDate());
                         }
                 } catch (Exception e) {
                         // TODO: handle exception
