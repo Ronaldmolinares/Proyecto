@@ -3,23 +3,23 @@ package model;
 import java.util.Date;
 
 public class Patient extends Person {
-    private Date birthday;
+    private String birthday;
 
     public Patient() {
 
     }
 
     public Patient(int id, String name, String lastName, String phone, String address, String email,
-            Date birthday) {
+            String birthday) {
         super(id, name, lastName, phone, address, email);
         this.birthday = birthday;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -29,7 +29,7 @@ public class Patient extends Person {
 
     @Override
     public String toString() {
-        return "Patient " + super.toString() + ", birthday=" + birthday + "]";
+        return super.toString() + ";" + birthday;
     }
 
 }

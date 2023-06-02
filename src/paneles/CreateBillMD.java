@@ -13,11 +13,12 @@ public class CreateBillMD extends javax.swing.JPanel {
 	private static final String PATHBILLSCONSULTORY = "src\\persistence\\resources\\outputBillsMedicalPractice\\BILLSCONSULTORY.txt";
 	private javax.swing.JButton btnGenerarFactura;
 	private MedicalPractice medicalPractice = new MedicalPractice();
-	private CreateBillPat mediCreateBillPat=new CreateBillPat();
+
 	private Persistence persistence = new Persistence();
 
 	public CreateBillMD() throws IOException {
 		initComponents();
+		medicalPractice = (CreateBillPat.medicalPractice);
 	}
 
 	public String[][] parseText(String filePath) throws IOException {

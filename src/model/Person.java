@@ -8,8 +8,8 @@ public class Person {
     private String address;
     private String email;
 
-    public Person (){
-        
+    public Person() {
+
     }
 
     public Person(int id, String name, String lastName, String phone, String address, String email) {
@@ -71,9 +71,8 @@ public class Person {
 
     @Override
     public String toString() {
-        return " [id=" + id + ", name=" + name + ", lastName=" + lastName + ", phone=" + phone + ", address="
-                + address + ", email=" + email;
+        return id + ";" + name + ";" + lastName + ";" + phone + ";"
+                + address + ";" + email;
     }
 
-    
 }
