@@ -1,8 +1,7 @@
 package model;
 
 public class Doctor extends Person {
-    private SpecialityEnum specialty;
-    private String speciality;
+    private SpecialityEnum speciality;
 
     public Doctor() {
 
@@ -11,20 +10,15 @@ public class Doctor extends Person {
     public Doctor(int id, String name, String lastName, String phone, String address, String email,
             SpecialityEnum specialty) {
         super(id, name, lastName, phone, address, email);
-        this.specialty = specialty;
+        this.speciality = specialty;
     }
 
-    public Doctor(int id, String name, String lastName, String phone, String address, String email,
-			String speciality) {
-    	this.speciality = speciality;
-	}
-
-	public SpecialityEnum getSpecialty() {
-        return specialty;
+    public SpecialityEnum getSpecialty() {
+        return speciality;
     }
 
-    public void setSpecialty(SpecialityEnum specialty) {
-        this.specialty = specialty;
+    public void setSpecialty(SpecialityEnum speciality) {
+        this.speciality = speciality;
     }
 
     public String careForPatient() {
@@ -33,7 +27,7 @@ public class Doctor extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + "; " + specialty;
+        return super.toString() + "; " + speciality;
     }
 
 }

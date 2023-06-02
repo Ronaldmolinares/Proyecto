@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package paneles;
+
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.io.FileReader;
+import java.io.*;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -14,9 +16,9 @@ import exceptions.DuplicateException;
 import exceptions.ValueNotFoundException;
 import model.Doctor;
 import model.MedicalPractice;
+import model.SpecialityEnum;
 import model.TreatmentEnum;
 import persistence.Persistence;
-import java.io.*;
 
 /**
  * @author Samir
@@ -29,38 +31,10 @@ public class CreateDoc extends javax.swing.JPanel {
 	 * Creates new form CreateDoc
 	 */
 	public CreateDoc() {
-		// Leer Archivo y cargar Data
-		cargarDoctors(PATHDOCTOR);
 		initComponents();
 
 	}
 
-	private void cargarDoctors(String filePath) {
-		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] values = line.split(";");
-				if (values.length == 7) {
-					int id = Integer.parseInt(values[0]);
-					String name = values[1];
-					String lastName = values[2];
-					String phone = values[3];
-					String address = values[4];
-					String email = values[5];
-					String speciality = values[6];
-					if (medicalPractice.findDoctor(id) == -1) {
-						Doctor doctor = new Doctor(id, name, lastName, phone, address, email, speciality);
-						medicalPractice.addDoctor(doctor);
-					}else{
-						JOptionPane.showMessageDialog(null, "Doc already exist");
-					}
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-        
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,43 +43,32 @@ public class CreateDoc extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
+		// Leer Archivo y cargar Data
+		cargarDoctors(PATHDOCTOR);
 		bg = new javax.swing.JPanel();
-        message = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
-        tfname = new javax.swing.JTextField();
-        lastName = new javax.swing.JLabel();
-        tflastName = new javax.swing.JTextField();
-        phone = new javax.swing.JLabel();
-        tfphone = new javax.swing.JTextField();
-        address = new javax.swing.JLabel();
-        tfaddress = new javax.swing.JTextField();
-        email = new javax.swing.JLabel();
-        tfemail = new javax.swing.JTextField();
-        specialty = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        btnSend = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        id = new javax.swing.JLabel();
-        tfid = new javax.swing.JTextField();
-        specialitys = new javax.swing.JComboBox<>();
-        
+		message = new javax.swing.JLabel();
+		name = new javax.swing.JLabel();
+		tfname = new javax.swing.JTextField();
+		lastName = new javax.swing.JLabel();
+		tflastName = new javax.swing.JTextField();
+		phone = new javax.swing.JLabel();
+		tfphone = new javax.swing.JTextField();
+		address = new javax.swing.JLabel();
+		tfaddress = new javax.swing.JTextField();
+		email = new javax.swing.JLabel();
+		tfemail = new javax.swing.JTextField();
+		specialty = new javax.swing.JLabel();
+		jSeparator2 = new javax.swing.JSeparator();
+		btnSend = new javax.swing.JButton();
+		jLabel1 = new javax.swing.JLabel();
+		id = new javax.swing.JLabel();
+		tfid = new javax.swing.JTextField();
+		specialitys = new javax.swing.JComboBox<>();
+
 		bg.setBackground(new java.awt.Color(255, 255, 255));
 
 		message.setFont(new java.awt.Font("Roboto Light", 1, 24)); // NOI18N
 		message.setText("Create a Doctor");
-
-		id.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
-		id.setText("Id");
-
-		tfid.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
-		tfid.setForeground(new java.awt.Color(153, 153, 153));
-		tfid.setText("Enter Your id");
-
-		tfname.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mousePressed(java.awt.event.MouseEvent evt) {
-				tfidMousePressed(evt);
-			}
-		});
 
 		name.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
 		name.setText("Name");
@@ -154,7 +117,6 @@ public class CreateDoc extends javax.swing.JPanel {
 				tfaddressMousePressed(evt);
 			}
 		});
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
 		email.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
 		email.setText("Email");
@@ -171,92 +133,7 @@ public class CreateDoc extends javax.swing.JPanel {
 		specialty.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
 		specialty.setText("Specialty");
 
-        specialitys.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
-        specialitys.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Endodontics", "Orthodontics", "Periodontics", "Prosthodontics", "Oral Surgery", "Pediatric Dentistry", "Oral Pathology", "Oral Medicine", "Oral Radiolgy", "Dental Public Health" }));
-        specialitys.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                specialitysActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
-        bg.setLayout(bgLayout);
-        bgLayout.setHorizontalGroup(
-            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(message))
-            .addGroup(bgLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bgLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id)
-                    .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name)
-                    .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastName)
-                    .addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phone)
-                    .addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(address)
-                    .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email)
-                    .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(specialty)
-                    .addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(bgLayout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        bgLayout.setVerticalGroup(
-            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(message)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(id)
-                        .addGap(8, 8, 8)
-                        .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(name)
-                        .addGap(8, 8, 8)
-                        .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(address)
-                        .addGap(8, 8, 8)
-                        .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
-                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+		jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
 		btnSend.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
 		btnSend.setText("Send");
@@ -283,17 +160,31 @@ public class CreateDoc extends javax.swing.JPanel {
 			}
 		});
 
-		javax.swing.GroupLayout bgLayout1 = new javax.swing.GroupLayout(bg);
-		bg.setLayout(bgLayout1);
-		bgLayout1.setHorizontalGroup(
-				bgLayout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(bgLayout1.createSequentialGroup().addGap(30, 30, 30).addComponent(message))
-						.addGroup(bgLayout1.createSequentialGroup().addGap(50, 50, 50).addComponent(jLabel1,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGroup(bgLayout1
-								.createSequentialGroup().addGap(50, 50,
-										50)
-								.addGroup(bgLayout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		specialitys.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+		// specialitys.setModel(new
+		// java.swing.DefaultComboBoxModel<>(SpecialityEnum.values()));
+		specialitys = new javax.swing.JComboBox<>(SpecialityEnum.values());
+
+		specialitys.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				specialitysActionPerformed(evt);
+			}
+		});
+
+		javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+		bg.setLayout(bgLayout);
+		bgLayout.setHorizontalGroup(
+				bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(bgLayout.createSequentialGroup()
+								.addGap(30, 30, 30)
+								.addComponent(message))
+						.addGroup(bgLayout.createSequentialGroup()
+								.addGap(50, 50, 50)
+								.addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGroup(bgLayout.createSequentialGroup()
+								.addGap(50, 50, 50)
+								.addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 										.addComponent(id)
 										.addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,84 +194,137 @@ public class CreateDoc extends javax.swing.JPanel {
 										.addComponent(lastName)
 										.addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(phone).addComponent(tfphone,
-												javax.swing.GroupLayout.PREFERRED_SIZE, 350,
+										.addComponent(phone)
+										.addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addGap(100, 100, 100)
 								.addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(70, 70,
-										70)
-								.addGroup(bgLayout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGap(70, 70, 70)
+								.addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 										.addComponent(address)
 										.addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addComponent(email)
 										.addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(specialty).addComponent(specialty,
-												javax.swing.GroupLayout.PREFERRED_SIZE, 350,
+										.addComponent(specialty)
+										.addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
 												javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addGroup(bgLayout1.createSequentialGroup().addGap(440, 440, 440).addComponent(btnSend,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)));
-		bgLayout1.setVerticalGroup(bgLayout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(bgLayout1.createSequentialGroup().addGap(50, 50, 50).addComponent(message).addGap(18, 18, 18)
-						.addComponent(jLabel1).addGap(31, 31, 31)
-						.addGroup(bgLayout1
-								.createParallelGroup(
-										javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(bgLayout1.createSequentialGroup().addComponent(id).addGap(8, 8, 8)
-										.addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(25, 25, 25).addComponent(name).addGap(8, 8, 8)
-										.addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(25, 25, 25)
-										.addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(6, 6, 6)
-										.addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(25, 25, 25)
-										.addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(6, 6, 6).addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGroup(bgLayout1.createSequentialGroup().addGap(10, 10, 10).addComponent(jSeparator2,
-										javax.swing.GroupLayout.PREFERRED_SIZE, 290,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGroup(bgLayout1.createSequentialGroup().addComponent(address).addGap(8, 8, 8)
-										.addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(45, 45, 45)
-										.addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(6, 6, 6)
-										.addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(45, 45, 45)
-										.addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(6, 6, 6).addComponent(specialty,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addGap(50, 50, 50).addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 47,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+						.addGroup(bgLayout.createSequentialGroup()
+								.addGap(440, 440, 440)
+								.addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 131,
+										javax.swing.GroupLayout.PREFERRED_SIZE)));
+		bgLayout.setVerticalGroup(
+				bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(bgLayout.createSequentialGroup()
+								.addGap(50, 50, 50)
+								.addComponent(message)
+								.addGap(18, 18, 18)
+								.addComponent(jLabel1)
+								.addGap(31, 31, 31)
+								.addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(bgLayout.createSequentialGroup()
+												.addComponent(id)
+												.addGap(8, 8, 8)
+												.addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(25, 25, 25)
+												.addComponent(name)
+												.addGap(8, 8, 8)
+												.addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(25, 25, 25)
+												.addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(6, 6, 6)
+												.addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(25, 25, 25)
+												.addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(6, 6, 6)
+												.addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(bgLayout.createSequentialGroup()
+												.addGap(10, 10, 10)
+												.addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 290,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(bgLayout.createSequentialGroup()
+												.addComponent(address)
+												.addGap(8, 8, 8)
+												.addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(45, 45, 45)
+												.addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(6, 6, 6)
+												.addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(45, 45, 45)
+												.addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(6, 6, 6)
+												.addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)))
+								.addGap(50, 50, 50)
+								.addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 47,
+										javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
 		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(bg,
-				javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(bg,
-				javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE));
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE));
 	}// </editor-fold>
+
+	private void cargarDoctors(String filePath) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] values = line.split(";");
+				if (values.length == 7) {
+					try {
+						int id = Integer.parseInt(values[0]);
+						String name = values[1];
+						String lastName = values[2];
+						String phone = values[3];
+						String address = values[4];
+						String email = values[5];
+						SpecialityEnum speciality = SpecialityEnum.valueOf(values[6].toUpperCase().trim());
+
+						if (medicalPractice.findDoctor(id) == -1) {
+							Doctor doctor = new Doctor(id, name, lastName, phone, address, email, speciality);
+							medicalPractice.addDoctor(doctor);
+						} else {
+							JOptionPane.showMessageDialog(null, "Doctor already exists.");
+						}
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "Invalid ID format for doctor: " + line);
+					} catch (IllegalArgumentException e) {
+						JOptionPane.showMessageDialog(null, "Invalid speciality value for doctor: " + line);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid data format for doctor: " + line);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error reading the file.");
+		}
+	}
 
 	private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
 		// ADICIONAR DOCTOR A MEDICAL PRACTICE obtiendo los datos de los labels
@@ -393,7 +337,7 @@ public class CreateDoc extends javax.swing.JPanel {
 			String phone = tfphone.getText();
 			String address = tfaddress.getText();
 			String email = tfemail.getText();
-			String speciality = specialty.getText();
+			SpecialityEnum speciality = SpecialityEnum.valueOf(specialitys.getSelectedItem().toString());
 			// Validar los campos obligatorios
 			if (name.isEmpty() || lastName.isEmpty() || phone.isEmpty() || address.isEmpty() || email.isEmpty()
 					|| idText.isEmpty()) {
@@ -409,7 +353,7 @@ public class CreateDoc extends javax.swing.JPanel {
 				doctor.setPhone(phone);
 				doctor.setAddress(address);
 				doctor.setEmail(email);
-				// doctor.setSpeciality(speciality);
+				doctor.setSpecialty(speciality);
 				medicalPractice.addDoctor(doctor);
 				Persistence.writeFile(medicalPractice.showDoctors(), PATHDOCTOR);
 				JOptionPane.showMessageDialog(null, "Doctor created successfully");
@@ -424,75 +368,76 @@ public class CreateDoc extends javax.swing.JPanel {
 
 	}
 
-    private void tfnameMousePressed(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (tfname.getText().equals("Enter Your Name")) {
-            tfname.setText("");
-            tfname.setForeground(Color.BLACK);
-        }
-    }
+	private void tfnameMousePressed(java.awt.event.MouseEvent evt) {
+		// TODO add your handling code here:
+		if (tfname.getText().equals("Enter Your Name")) {
+			tfname.setText("");
+			tfname.setForeground(Color.BLACK);
+		}
+	}
 
-    private void tflastNameMousePressed(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (tflastName.getText().equals("Enter Your Last Name")) {
-            tflastName.setText("");
-            tflastName.setForeground(Color.BLACK);
-        }
-    }
+	private void tflastNameMousePressed(java.awt.event.MouseEvent evt) {
+		// TODO add your handling code here:
+		if (tflastName.getText().equals("Enter Your Last Name")) {
+			tflastName.setText("");
+			tflastName.setForeground(Color.BLACK);
+		}
+	}
 
-    private void tfphoneMousePressed(java.awt.event.MouseEvent evt) {
-        if (tfphone.getText().equals("Enter Your Phone")) {
-            tfphone.setText("");
-            tfphone.setForeground(Color.BLACK);
-        } // TODO add your handling code here:
-    }
+	private void tfphoneMousePressed(java.awt.event.MouseEvent evt) {
+		if (tfphone.getText().equals("Enter Your Phone")) {
+			tfphone.setText("");
+			tfphone.setForeground(Color.BLACK);
+		} // TODO add your handling code here:
+	}
 
-    private void tfaddressMousePressed(java.awt.event.MouseEvent evt) {
-        if (tfaddress.getText().equals("Enter Your Address")) {
-            tfaddress.setText("");
-            tfaddress.setForeground(Color.BLACK);
-        } // TODO add your handling code here:
-    }
+	private void tfaddressMousePressed(java.awt.event.MouseEvent evt) {
+		if (tfaddress.getText().equals("Enter Your Address")) {
+			tfaddress.setText("");
+			tfaddress.setForeground(Color.BLACK);
+		} // TODO add your handling code here:
+	}
 
-    private void tfemailMousePressed(java.awt.event.MouseEvent evt) {
-        if (tfemail.getText().equals("Enter Your Email")) {
-            tfemail.setText("");
-            tfemail.setForeground(Color.BLACK);
-        } // TODO add your handling code here:
-    }
+	private void tfemailMousePressed(java.awt.event.MouseEvent evt) {
+		if (tfemail.getText().equals("Enter Your Email")) {
+			tfemail.setText("");
+			tfemail.setForeground(Color.BLACK);
+		} // TODO add your handling code here:
+	}
 
-    private void tfidMousePressed(java.awt.event.MouseEvent evt) {                                  
-        // TODO add your handling code here:
-        if(tfid.getText().equals("Enter Your ID")) {
-            tfid.setText("");
-            tfid.setForeground(Color.BLACK);
-        }
-    }                                               
+	private void tfidMousePressed(java.awt.event.MouseEvent evt) {
+		// TODO add your handling code here:
+		if (tfid.getText().equals("Enter Your ID")) {
+			tfid.setText("");
+			tfid.setForeground(Color.BLACK);
+		}
+	}
 
-    private void specialitysActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-        String message = "Select the specialty";
-        message = message + specialitys.getSelectedItem().toString();
-    } 
-    // Variables declaration - do not modify                     
-    private javax.swing.JLabel address;
-    private javax.swing.JPanel bg;
-    private javax.swing.JButton btnSend;
-    private javax.swing.JLabel email;
-    private javax.swing.JLabel id;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lastName;
-    private javax.swing.JLabel message;
-    private javax.swing.JLabel name;
-    private javax.swing.JLabel phone;
-    private javax.swing.JComboBox<String> specialitys;
-    private javax.swing.JLabel specialty;
-    private javax.swing.JTextField tfaddress;
-    private javax.swing.JTextField tfemail;
-    private javax.swing.JTextField tfid;
-    private javax.swing.JTextField tflastName;
-    private javax.swing.JTextField tfname;
-    private javax.swing.JTextField tfphone;
-    // End of variables declaration                   
+	private void specialitysActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		String message = "Select the specialty";
+		message = message + specialitys.getSelectedItem().toString();
+	}
+
+	// Variables declaration - do not modify
+	private javax.swing.JLabel address;
+	private javax.swing.JPanel bg;
+	private javax.swing.JButton btnSend;
+	private javax.swing.JLabel email;
+	private javax.swing.JLabel id;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JSeparator jSeparator2;
+	private javax.swing.JLabel lastName;
+	private javax.swing.JLabel message;
+	private javax.swing.JLabel name;
+	private javax.swing.JLabel phone;
+	private JComboBox<SpecialityEnum> specialitys;
+	private javax.swing.JLabel specialty;
+	private javax.swing.JTextField tfaddress;
+	private javax.swing.JTextField tfemail;
+	private javax.swing.JTextField tfid;
+	private javax.swing.JTextField tflastName;
+	private javax.swing.JTextField tfname;
+	private javax.swing.JTextField tfphone;
+	// End of variables declaration
 }
