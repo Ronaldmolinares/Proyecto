@@ -288,7 +288,11 @@ public class Login extends javax.swing.JFrame {
     String password = new String(passwordChars);
     boolean validateUser = user.get(0).equals(textFieldUser.getText());
     boolean validatePassword =  user.get(1).equals(password);
-	if (validateUser && validatePassword) {
+    
+    boolean validateUser1 = user.get(2).equals(textFieldUser.getText());
+    boolean validatePassword1 =  user.get(3).equals(password);
+    
+	if (validateUser && validatePassword || validateUser1 && validatePassword1) {
         MenuFrame frame = new MenuFrame();
         frame.setVisible(true);
         this.dispose();
