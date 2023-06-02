@@ -1,9 +1,11 @@
 package model;
 
-public class Patient extends Person{
+import java.util.Date;
+
+public class Patient extends Person {
     private Date birthday;
 
-    public Patient(){
+    public Patient() {
 
     }
 
@@ -21,7 +23,7 @@ public class Patient extends Person{
         this.birthday = birthday;
     }
 
-    public String payBills(){
+    public String payBills() {
         return "";
     }
 
@@ -30,5 +32,4 @@ public class Patient extends Person{
         return "Patient " + super.toString() + ", birthday=" + birthday + "]";
     }
 
-    
 }
