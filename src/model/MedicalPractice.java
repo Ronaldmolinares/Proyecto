@@ -77,9 +77,7 @@ public class MedicalPractice {
     }
 
     public String showBills() {
-        String salida = "\t\t---------------------------------------- \t\t LIST OF BILLS \t\t--------------------------------------------------\t\t"
-                +
-                "\n";
+        String salida = "";
         Iterator it = bills.iterator();
         while (it.hasNext()) {
             salida += (it.next()) + "\n";
