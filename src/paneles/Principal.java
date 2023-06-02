@@ -6,8 +6,7 @@ public class Principal extends javax.swing.JPanel {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+                         
     private void initComponents() {
 
         bg = new javax.swing.JPanel();

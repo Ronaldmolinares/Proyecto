@@ -1,6 +1,8 @@
 package persistence;
 
 import java.io.*;
+import java.util.ArrayList;
+
 import view.*;
 
 public class Persistence {
@@ -21,6 +23,23 @@ public class Persistence {
             io.showGraphicErrorMessage("Error creating the file.");
             e.printStackTrace();
         }
+    }
+    
+    public static ArrayList<String> readFileLine(String path) {
+    	ArrayList<String> lines = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String linea = br.readLine();
+            while (linea != null) {
+                lines.add(linea);
+                linea = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            io.showGraphicErrorMessage("Error reading the file.");
+            e.printStackTrace();
+        }
+        return lines;
     }
 
     public static void readFile(String path) {
