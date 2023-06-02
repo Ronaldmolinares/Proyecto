@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
+
 import javax.swing.JPanel;
 import paneles.*;
 
@@ -79,7 +81,12 @@ public class MenuFrame extends javax.swing.JFrame {
         labelBillMD.setIconTextGap(10);
         labelBillMD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelBillMDMouseClicked(evt);
+                try {
+                    labelBillMDMouseClicked(evt);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -361,7 +368,7 @@ public class MenuFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void labelBillMDMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void labelBillMDMouseClicked(java.awt.event.MouseEvent evt) throws IOException {                                         
 
         //Panel Y CODIGO PARA MOSTRAR LA GENERACION DE LA FACTURA AL MD
         showJPanel(new CreateBillMD());

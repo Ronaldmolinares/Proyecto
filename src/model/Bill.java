@@ -1,5 +1,8 @@
 package model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Bill {
 
     private int numberBill;
@@ -16,7 +19,7 @@ public class Bill {
         this.consultationDate = consultationDate;
     }
 
-    public Bill(){
+    public Bill() {
 
     }
 
@@ -53,17 +56,23 @@ public class Bill {
     }
 
     public String getConsultationDate() {
+        if (consultationDate == null) {
+            LocalDateTime fechaHoraActual = LocalDateTime.now();
+            DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            consultationDate = fechaHoraActual.format(formateador);
+        }
         return consultationDate;
     }
 
     public void setConsultationDate(String consultationDate) {
         this.consultationDate = consultationDate;
     }
-    
+
     @Override
     public String toString() {
-        return "Bill [Number Bill: " + numberBill + ", patient: " + patient + ", amount: " + amount + ", treatment: "
-                + treatment + ", consultationDate: " + consultationDate + "]";
+        return numberBill + ";" + patient.getId() + ";" + patient.getName() + " " + patient.getLastName() + ";"
+                + patient.getPhone() + ";" +
+                treatment + ";" + amount + ";" +consultationDate ;
     }
-    
+
 }
