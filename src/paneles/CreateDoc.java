@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package paneles;
-
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
@@ -17,7 +16,6 @@ import model.MedicalPractice;
 import persistence.Persistence;
 
 /**
- *
  * @author Samir
  */
 public class CreateDoc extends javax.swing.JPanel {
@@ -29,6 +27,7 @@ public class CreateDoc extends javax.swing.JPanel {
      */
     public CreateDoc() {
         initComponents();
+        //Leer Archivo y cargar Data 
     }
 
     /**
@@ -53,12 +52,12 @@ public class CreateDoc extends javax.swing.JPanel {
         email = new javax.swing.JLabel();
         tfemail = new javax.swing.JTextField();
         specialty = new javax.swing.JLabel();
-        tfspecialty = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnSend = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         tfid = new javax.swing.JTextField();
+        specialitys = new javax.swing.JComboBox<>();
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,15 +127,6 @@ public class CreateDoc extends javax.swing.JPanel {
         specialty.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         specialty.setText("Specialty");
 
-        tfspecialty.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
-        tfspecialty.setForeground(new java.awt.Color(153, 153, 153));
-        tfspecialty.setText("Enter Your Specialty");
-        tfspecialty.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tfspecialtyMousePressed(evt);
-            }
-        });
-
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnSend.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -160,6 +150,14 @@ public class CreateDoc extends javax.swing.JPanel {
         tfid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tfidMousePressed(evt);
+            }
+        });
+
+        specialitys.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        specialitys.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Endodontics", "Orthodontics", "Periodontics", "Prosthodontics", "Oral Surgery", "Pediatric Dentistry", "Oral Pathology", "Oral Medicine", "Oral Radiolgy", "Dental Public Health" }));
+        specialitys.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specialitysActionPerformed(evt);
             }
         });
 
@@ -193,7 +191,7 @@ public class CreateDoc extends javax.swing.JPanel {
                     .addComponent(email)
                     .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(specialty)
-                    .addComponent(tfspecialty, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(440, 440, 440)
                 .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,7 +235,7 @@ public class CreateDoc extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(tfspecialty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(specialitys, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50)
                 .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -333,20 +331,19 @@ public class CreateDoc extends javax.swing.JPanel {
         } // TODO add your handling code here:
     }
 
-    private void tfspecialtyMousePressed(java.awt.event.MouseEvent evt) {
-        if (tfspecialty.getText().equals("Enter Your Specialty")) {
-            tfspecialty.setText("");
-            tfspecialty.setForeground(Color.BLACK);
-        } // TODO add your handling code here:
-    }                             
-
     private void tfidMousePressed(java.awt.event.MouseEvent evt) {                                  
         // TODO add your handling code here:
         if(tfid.getText().equals("Enter Your ID")) {
             tfid.setText("");
             tfid.setForeground(Color.BLACK);
         }
-    }                                 
+    }                                               
+
+    private void specialitysActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        String message = "Select the specialty";
+        message = message + specialitys.getSelectedItem().toString();
+    }                                           
 
 
     // Variables declaration - do not modify                     
@@ -361,6 +358,7 @@ public class CreateDoc extends javax.swing.JPanel {
     private javax.swing.JLabel message;
     private javax.swing.JLabel name;
     private javax.swing.JLabel phone;
+    private javax.swing.JComboBox<String> specialitys;
     private javax.swing.JLabel specialty;
     private javax.swing.JTextField tfaddress;
     private javax.swing.JTextField tfemail;
@@ -368,6 +366,5 @@ public class CreateDoc extends javax.swing.JPanel {
     private javax.swing.JTextField tflastName;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfphone;
-    private javax.swing.JTextField tfspecialty;
     // End of variables declaration                   
 }

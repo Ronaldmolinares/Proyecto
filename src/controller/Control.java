@@ -33,13 +33,13 @@ public class Control {
                         break;
                     case 3:
                         Doctor doctor = new Doctor(1, "Marx", "Slown", "312321123", "Cll 25 N°3424", "sonia@gmail",
-                                "Ortodoncista");
+                               SpecialityEnum.DENTAL_PUBLIC_HEALTH);
                         medPractice.addDoctor(doctor);
                         Patient patient = new Patient(1, "Camila", "Sosa", "312321123", "Cll 50 N°3424", "sonia@gmail",
                                  date = new Date((short) 21, (short) 03, (short) 2005));
                         medPractice.addPatient(patient);
                         Doctor doctor1 = new Doctor(2, "Meredith", "Gray", "312321123", "Cll 97 N°3424", "sonia@gmail",
-                                "Ortodoncista");
+                                SpecialityEnum.ENDODONTICS);
                         medPractice.addDoctor(doctor1);
                         Patient patient1 = new Patient(2, "Ana", "Valenzuela", "312321123", "Cll 190 N°3424",
                                 "sonia@gmail",
@@ -92,7 +92,7 @@ public class Control {
                         io.readGraphicString("Insert phone: "),
                         io.readGraphicString("Insert address: "),
                         io.readGraphicString("Insert email: "),
-                        io.readGraphicString("Insert specialty: "));
+                        SpecialityEnum.ORAL_RADIOLGY);
                 medPractice.addDoctor(d);
                 io.showGraphicMessage("Doctor generated");
                 io.showGraphicMessage(d.toString());
