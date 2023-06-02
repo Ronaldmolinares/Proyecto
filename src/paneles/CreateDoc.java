@@ -5,13 +5,24 @@
 package paneles;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import exceptions.DuplicateException;
+import exceptions.ValueNotFoundException;
+import model.Doctor;
+import model.MedicalPractice;
+import persistence.Persistence;
 
 /**
  *
  * @author Samir
  */
 public class CreateDoc extends javax.swing.JPanel {
+    private static final String PATHDOCTOR = "src\\persistence\\resources\\outputData\\Doctors.txt";
+    private static MedicalPractice medicalPractice = new MedicalPractice();
 
     /**
      * Creates new form CreateDoc
@@ -46,6 +57,8 @@ public class CreateDoc extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         btnSend = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        tfid = new javax.swing.JTextField();
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -138,6 +151,18 @@ public class CreateDoc extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         jLabel1.setText("- Welcome, we are glad to add a new professional to our work team, please enter the Doctor's information");
 
+        id.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        id.setText("ID");
+
+        tfid.setFont(new java.awt.Font("Roboto Light", 0, 16)); // NOI18N
+        tfid.setForeground(new java.awt.Color(153, 153, 153));
+        tfid.setText("Enter Your ID");
+        tfid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tfidMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -146,30 +171,32 @@ public class CreateDoc extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(message))
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(name)
-                            .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastName)
-                            .addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phone)
-                            .addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(100, 100, 100)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(address)
-                            .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email)
-                            .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(specialty)
-                            .addComponent(tfspecialty, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(id)
+                    .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name)
+                    .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastName)
+                    .addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phone)
+                    .addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(100, 100, 100)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(address)
+                    .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email)
+                    .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specialty)
+                    .addComponent(tfspecialty, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,20 +208,24 @@ public class CreateDoc extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(id)
+                        .addGap(8, 8, 8)
+                        .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
                         .addComponent(name)
                         .addGap(8, 8, 8)
                         .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(25, 25, 25)
                         .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(tflastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(25, 25, 25)
                         .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(tfphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(address)
                         .addGap(8, 8, 8)
@@ -207,7 +238,7 @@ public class CreateDoc extends javax.swing.JPanel {
                         .addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(tfspecialty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(80, 80, 80)
+                .addGap(50, 50, 50)
                 .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -223,54 +254,99 @@ public class CreateDoc extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
-    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Doctor created successfully");
-    }                                       
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
+        // ADICIONAR DOCTOR A MEDICAL PRACTICE obtiendo los datos de los labels
+        // Obtener los valores de los JTextField
+        try {
+            String idText = tfid.getText();
+            int id = Integer.parseInt(idText);
+            String name = tfname.getText();
+            String lastName = tflastName.getText();
+            String phone = tfphone.getText();
+            String address = tfaddress.getText();
+            String email = tfemail.getText();
+            // String speciality=tfemail.get;
+            // Validar los campos obligatorios
+            if (name.isEmpty() || lastName.isEmpty() || phone.isEmpty() || address.isEmpty() || email.isEmpty()
+                    || idText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill in all the fields");
+                return;
+            }
 
-    private void tfnameMousePressed(java.awt.event.MouseEvent evt) {                                    
+            if (medicalPractice.findDoctor(id) == -1) {
+                Doctor doctor = new Doctor();
+                doctor.setId(id);
+                doctor.setName(name);
+                doctor.setLastName(lastName);
+                doctor.setPhone(phone);
+                doctor.setAddress(address);
+                doctor.setEmail(email);
+                // doctor.setSpeciality();
+                medicalPractice.addDoctor(doctor);
+                Persistence.writeFile(medicalPractice.getPatients().toString(), PATHDOCTOR);
+                JOptionPane.showMessageDialog(null, "Doctor created successfully");
+            } else {
+                Exception e = new DuplicateException("This doctor already exists");
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } catch (Exception em) {
+            Exception e = new ValueNotFoundException("This doctor already exists");
+            JOptionPane.showMessageDialog(null, em.getMessage());
+        }
+
+    }
+
+    private void tfnameMousePressed(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        if(tfname.getText().equals("Enter Your Name")) {
+        if (tfname.getText().equals("Enter Your Name")) {
             tfname.setText("");
             tfname.setForeground(Color.BLACK);
         }
-    }                                   
+    }
 
-    private void tflastNameMousePressed(java.awt.event.MouseEvent evt) {                                        
+    private void tflastNameMousePressed(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        if(tflastName.getText().equals("Enter Your Last Name")) {
+        if (tflastName.getText().equals("Enter Your Last Name")) {
             tflastName.setText("");
             tflastName.setForeground(Color.BLACK);
         }
-    }                                       
+    }
 
-    private void tfphoneMousePressed(java.awt.event.MouseEvent evt) {                                     
-        if(tfphone.getText().equals("Enter Your Phone")) {
+    private void tfphoneMousePressed(java.awt.event.MouseEvent evt) {
+        if (tfphone.getText().equals("Enter Your Phone")) {
             tfphone.setText("");
             tfphone.setForeground(Color.BLACK);
-        }        // TODO add your handling code here:
-    }                                    
+        } // TODO add your handling code here:
+    }
 
-    private void tfaddressMousePressed(java.awt.event.MouseEvent evt) {                                       
-        if(tfaddress.getText().equals("Enter Your Address")) {
+    private void tfaddressMousePressed(java.awt.event.MouseEvent evt) {
+        if (tfaddress.getText().equals("Enter Your Address")) {
             tfaddress.setText("");
             tfaddress.setForeground(Color.BLACK);
-        }        // TODO add your handling code here:
-    }                                      
+        } // TODO add your handling code here:
+    }
 
-    private void tfemailMousePressed(java.awt.event.MouseEvent evt) {                                     
-        if(tfemail.getText().equals("Enter Your Email")) {
+    private void tfemailMousePressed(java.awt.event.MouseEvent evt) {
+        if (tfemail.getText().equals("Enter Your Email")) {
             tfemail.setText("");
             tfemail.setForeground(Color.BLACK);
-        }        // TODO add your handling code here:
-    }                                    
+        } // TODO add your handling code here:
+    }
 
-    private void tfspecialtyMousePressed(java.awt.event.MouseEvent evt) {                                         
-        if(tfspecialty.getText().equals("Enter Your Specialty")) {
+    private void tfspecialtyMousePressed(java.awt.event.MouseEvent evt) {
+        if (tfspecialty.getText().equals("Enter Your Specialty")) {
             tfspecialty.setText("");
             tfspecialty.setForeground(Color.BLACK);
-        }        // TODO add your handling code here:
-    }                                        
+        } // TODO add your handling code here:
+    }                             
+
+    private void tfidMousePressed(java.awt.event.MouseEvent evt) {                                  
+        // TODO add your handling code here:
+        if(tfid.getText().equals("Enter Your ID")) {
+            tfid.setText("");
+            tfid.setForeground(Color.BLACK);
+        }
+    }                                 
 
 
     // Variables declaration - do not modify                     
@@ -278,6 +354,7 @@ public class CreateDoc extends javax.swing.JPanel {
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnSend;
     private javax.swing.JLabel email;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lastName;
@@ -287,6 +364,7 @@ public class CreateDoc extends javax.swing.JPanel {
     private javax.swing.JLabel specialty;
     private javax.swing.JTextField tfaddress;
     private javax.swing.JTextField tfemail;
+    private javax.swing.JTextField tfid;
     private javax.swing.JTextField tflastName;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfphone;
