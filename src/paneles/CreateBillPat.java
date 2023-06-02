@@ -135,8 +135,9 @@ public class CreateBillPat extends javax.swing.JPanel {
                         if(medicalPractice.findPatient(idPatient)==-1){
                                 JOptionPane.showMessageDialog(this, "The patient does not exist");
                         }else{
-                                double amount;
-								Bill bill = new Bill(idPatient, idDoctor,amount,treatmentComboBox.getSelectedItem(),bill.getConsultationDate());
+                                double amount = 0;
+                              
+								bill = new Bill(idPatient, medicalPractice.getPatients().get(medicalPractice.findPatient(idPatient)),amount,(TreatmentEnum) treatmentComboBox.getSelectedItem(),bill.getConsultationDate());
                         }
                 } catch (Exception e) {
                         // TODO: handle exception

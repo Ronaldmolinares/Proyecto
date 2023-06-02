@@ -84,5 +84,22 @@ public class MedicalPractice {
         }
         return salida;
     }
+    public String showPatients() {
+        String salida = "";
+        Iterator it = patients.iterator();
+        while (it.hasNext()) {
+            salida += (it.next()) + "\n";
+        }
+        return salida;
+    }
+
+	public String showDoctors() {
+        String salida = "";
+        Iterator it = doctors.iterator();
+        while (it.hasNext()) {
+            salida += (it.next()) + "\n";
+        }
+        return salida;
+	}
 
 }

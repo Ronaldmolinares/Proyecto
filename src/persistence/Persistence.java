@@ -15,7 +15,7 @@ public class Persistence {
     public static void writeFile(String content, String path) {
         try {
             File file = new File(path);
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(file);
             fw.write(content);
             fw.close();
             io.showGraphicMessage("The File " + file.getName() + " was created successfully.");

@@ -5,6 +5,8 @@
 package paneles;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JOptionPane;
 
 import exceptions.DuplicateException;
@@ -121,6 +123,8 @@ public class CreateUser extends javax.swing.JPanel {
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				tfemailMousePressed(evt);
 			}
+
+
 		});
 
 		birthday.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -132,6 +136,15 @@ public class CreateUser extends javax.swing.JPanel {
 		tfbirthday.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				tfbirthdayMousePressed(evt);
+			}
+
+			private void tfbirthdayMousePressed(MouseEvent evt) {
+				// TODO add your handling code here:
+				if (tfbirthday.getText().equals("DD/MM/AAAA")) {
+					tfbirthday.setText("");
+					tfbirthday.setForeground(Color.BLACK);
+				}
+				
 			}
 		});
 
@@ -158,6 +171,15 @@ public class CreateUser extends javax.swing.JPanel {
 		tfid.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				tfidMousePressed(evt);
+			}
+
+			private void tfidMousePressed(MouseEvent evt) {
+				// TODO add your handling code here:
+				if (tfid.getText().equals("Enter Your ID")) {
+					tfid.setText("");
+					tfid.setForeground(Color.BLACK);
+				}
+				
 			}
 		});
 
@@ -301,9 +323,9 @@ public class CreateUser extends javax.swing.JPanel {
 				patient.setPhone(phone);
 				patient.setAddress(address);
 				patient.setEmail(email);
-				// doctor.setSpeciality();
+				patient.setBirthday(birthday);
 				medicalPractice.addPatient(patient);
-				Persistence.writeFile(medicalPractice.getPatients().toString(), PATHPATIENT);
+				Persistence.writeFile(medicalPractice.showPatients(), PATHPATIENT);
 				JOptionPane.showMessageDialog(null, "Patient created successfully");
 			} else {
 				Exception e = new DuplicateException("This patient already exists");
@@ -315,7 +337,14 @@ public class CreateUser extends javax.swing.JPanel {
 		}
 
 	}
-
+	private void tfemailMousePressed(MouseEvent evt) {
+		// TODO add your handling code here:
+		if (tfemail.getText().equals("Enter Your Email")) {
+			tfemail.setText("");
+			tfemail.setForeground(Color.BLACK);
+		}
+		
+	}
 	private void tfnameMousePressed(java.awt.event.MouseEvent evt) {
 		// TODO add your handling code here:
 		if (tfname.getText().equals("Enter Your Name")) {

@@ -27,6 +27,7 @@ public class Patient extends Person {
         return "";
     }
 
+    
     @Override
     public String toString() {
         return super.toString() + ";" + birthday;

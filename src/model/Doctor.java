@@ -2,6 +2,7 @@ package model;
 
 public class Doctor extends Person {
     private SpecialityEnum specialty;
+    private String speciality;
 
     public Doctor() {
 
@@ -13,7 +14,12 @@ public class Doctor extends Person {
         this.specialty = specialty;
     }
 
-    public SpecialityEnum getSpecialty() {
+    public Doctor(int id, String name, String lastName, String phone, String address, String email,
+			String speciality) {
+    	this.speciality = speciality;
+	}
+
+	public SpecialityEnum getSpecialty() {
         return specialty;
     }
 
