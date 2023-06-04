@@ -12,4 +12,9 @@ public enum TreatmentEnum {
         this.amount = amount;
     }
 
+	public double getAmount() {
+		// TODO Auto-generated method stub
+		return amount;
+	}
+
 }

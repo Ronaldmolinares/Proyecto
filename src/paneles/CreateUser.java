@@ -31,8 +31,9 @@ public class CreateUser extends javax.swing.JPanel {
 	 * Creates new form CreateDoc
 	 */
 	public CreateUser() {
-		initComponents();
 		medicalPractice = CreateDoc.medicalPractice;
+		initComponents();
+
 	}
 
 	/**
